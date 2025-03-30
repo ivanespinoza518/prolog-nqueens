@@ -1,0 +1,22 @@
+% Checks for no conflict
+% V: row index for new column to be added to existing solution list
+% P: existing solution list
+% D: distance between V and head of P, initially D will be 1, but
+% will be incremented during recursion
+nc(V,P,D) :-
+    P = [H|T],
+    H \= V,
+    RD is V - H,
+    RD \= D,
+    D1 is D + 1,
+    nc(V,T,D1).
+
+nc(_,[],_).
+
+solve(N,QP) :-
+    solve(N,[],QP).
+
+solve(N,QPT,QP) :-
+    NM1 is N - 1,
+    between(0,NM1,V),
+
